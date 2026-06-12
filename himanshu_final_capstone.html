@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himanshu Capstone Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* THE SETUP */
+        * { box-sizing: border-box; }
+        p { margin: 0; margin-bottom: 15px; }
+        body {
+            background-color: #f1f5f9;
+            display: grid;
+            gap: 40px;
+            grid-template-columns: 1fr;
+            margin: 0;
+            min-height: 100vh;
+            place-items: center;
+            padding: 40px 0;
+        }
+
+        .slide-container {
+            align-items: flex-start;
+            background-color: #ffffff;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+            height: 720px;
+            justify-content: flex-start;
+            overflow: hidden;
+            padding: 60px;
+            position: relative;
+            width: 1280px;
+        }
+
+        /* Background Design - Professional Fintech Accents */
+        .slide-container::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(49, 130, 206, 0.05) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        /* TYPOGRAPHY */
+        .slide-container h1, .slide-container h2, .slide-container h3 {
+            color: #0f172a;
+            font-family: 'Urbanist', sans-serif;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .slide-container h1 { font-size: 72px; line-height: 1.1; }
+        .slide-container .slide-title { font-size: 40px; margin-bottom: 40px; color: #1e293b; border-bottom: 4px solid #3182ce; padding-bottom: 10px; width: 100%; text-transform: uppercase; letter-spacing: -0.5px; }
+        .slide-container h3 { font-size: 28px; margin-bottom: 15px; color: #3182ce; }
+        .slide-container p, .slide-container li, .slide-container td, .slide-container th { font-size: 19px; color: #475569; line-height: 1.6; }
+
+        /* LAYOUTS */
+        .content-area { flex-grow: 1; width: 100%; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1; }
+        
+        .title-layout { text-align: center; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; margin: -60px; padding: 60px; width: calc(100% + 120px); height: calc(100% + 120px); }
+        .title-layout h1 { color: #ffffff; }
+        .title-layout .subtitle { font-size: 24px; color: #94a3b8; margin-top: 20px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; }
+        .title-layout .accent { height: 6px; width: 100px; background: #3182ce; margin: 40px 0; }
+
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; width: 100%; }
+        .two-column.tiled > div { background: #f8fafc; border-radius: 12px; padding: 40px; border-top: 5px solid #3182ce; }
+
+        .tiled-content { display: flex; gap: 30px; width: 100%; }
+        .tile { flex: 1; background: #f8fafc; padding: 30px; border-radius: 12px; text-align: center; border: 1px solid #e2e8f0; }
+        .tile .icon { font-size: 48px; color: #3182ce; margin-bottom: 20px; }
+
+        .image-wrapper { border-radius: 12px; overflow: hidden; height: 100%; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .image-wrapper img { width: 100%; height: 100%; object-fit: contain; }
+
+        .table-layout table { width: 100%; border-collapse: collapse; }
+        .table-layout th { background: #1e293b; color: white; padding: 18px; text-align: left; }
+        .table-layout td { padding: 18px; border-bottom: 1px solid #e2e8f0; }
+
+        /* Charts & Visual Components */
+        .chart-container { width: 100%; }
+        .bar { display: flex; align-items: center; margin-bottom: 20px; }
+        .bar-label { flex: 0 0 200px; font-weight: 600; text-align: right; padding-right: 20px; }
+        .bar-inner { flex-grow: 1; height: 40px; background: #f1f5f9; border-radius: 4px; overflow: hidden; }
+        .bar-fill { height: 100%; background: #3182ce; display: flex; align-items: center; justify-content: flex-end; padding-right: 15px; color: white; font-weight: 700; }
+
+        .number-box { text-align: center; }
+        .number-box .number { font-size: 120px; color: #3182ce; font-weight: 700; line-height: 1; }
+        .number-box .label { font-size: 24px; font-weight: 600; color: #1e293b; }
+
+        /* Bleed Image Right */
+        .slide-container.bleed-image-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0; align-items: start; }
+        .bleed-image-layout .content-container { padding: 60px; display: flex; flex-direction: column; justify-content: center; height: 100%; }
+        .bleed-image-layout .image-container { height: 100%; }
+        .bleed-image-layout img.bleed-image-side { height: 720px; width: 100%; object-fit: cover; }
+
+        /* Formulas */
+        .formula-box { background: #f8fafc; padding: 25px; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 30px; text-align: center; width: 100%; }
+
+        /* Bullet Lists */
+        .bullet-list { list-style: none; padding: 0; }
+        .bullet-list li { position: relative; padding-left: 50px; margin-bottom: 25px; font-size: 20px; }
+        .bullet-list li i { position: absolute; left: 0; top: 5px; font-size: 28px; color: #3182ce; }
+
+        /* Manual Screenshot Frame */
+        .screenshot-frame {
+            width: 100%;
+            height: 380px;
+            border: 2px dashed #cbd5e0;
+            background: #edf2f7;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #718096;
+            font-style: italic;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide-container" id="slide1">
+    <div class="title-layout">
+        <h1>MUTUAL FUND ANALYTICS</h1>
+        <div class="accent"></div>
+        <div class="subtitle">Quantitative Risk & Performance Engine</div>
+        <p style="margin-top: 40px; color: #94a3b8;">HIMANSHU | CAPSTONE FINTECH EVALUATION | JUNE 2026</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide2">
+    <h2 class="slide-title">Slide 2: Problem & Objective</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div>
+                <h3>The Challenge</h3>
+                <p>Retail transaction logs are heavily fractured across disconnected tracking silos, missing core mathematical risk guardrails and immediate customer attrition alerts for fund managers.</p>
+            </div>
+            <div>
+                <h3>The Objective</h3>
+                <p>Build an enterprise, automated Python data pipeline that unifies unstructured database sources, handles missing fields, monitors risk metrics, and sets alert indicators.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">Slide 3: Data Sources</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                <h3>Transactions</h3>
+                <p>Granular logs mapping investment amounts, date executions, and transaction type allocations (SIP vs. Lumpsum).</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-clipboard-list"></i></div>
+                <h3>Fund Scorecards</h3>
+                <p>Relational scheme descriptors, benchmark historical statistics, and institutional safety classifications.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-chart-area"></i></div>
+                <h3>NAV History</h3>
+                <p>Continuous daily closing price time-series sheets utilized to extract rolling mathematical tracking indicators.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide4">
+    <h2 class="slide-title">Slide 4: System Architecture</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <h3>Pipeline Orchestration Logic</h3>
+                <p>The centralized execution hub <strong>run_pipeline.py</strong> safely navigates structural transitions:</p>
+                <ul class="bullet-list" style="margin-top: 15px;">
+                    <li>Regex-driven automatic columns translation to unified <code>snake_case</code> fields.</li>
+                    <li>Handling null bounds via backward-first and forward-second padding imputation matrices.</li>
+                    <li>Localized database processing arrays preventing hardcoded runtime merge errors.</li>
+                </ul>
+            </div>
+            <div class="image-wrapper">
+                <img src="http://googleusercontent.com/image_collection/image_retrieval/16498211404407622611" alt="Architecture Diagram Blueprint">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide5">
+    <h2 class="slide-title">Slide 5: EDA Highlights — Capital Velocity</h2>
+    <div class="content-area">
+        <div class="chart-container">
+            <div class="bar">
+                <div class="bar-label">Total Portfolio AUM</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 100%;">$3.52B Portfolio Inflow</div></div>
+            </div>
+            <div class="bar">
+                <div class="bar-label">SIP Allocation</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 75%; background: #10b981;">75% Recurrent Volume</div></div>
+            </div>
+            <div class="bar">
+                <div class="bar-label">Lumpsum Entry</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 25%; background: #f59e0b;">25% Sporadic Inflow</div></div>
+            </div>
+        </div>
+        <p style="margin-top: 40px; font-style: italic; text-align: center;">Seasonal transaction monitoring shows high velocity clustering in Q1/Q4, aligning with employee salary bonus layers and Indian tax planning timelines.</p>
+    </div>
+</div>
+
+<div class="slide-container bleed-image-layout" id="slide6">
+    <div class="content-container">
+        <h2 class="slide-title" style="border:none; padding:0;">Slide 6: EDA Highlights — Regional Shifts</h2>
+        <p>Demographic mapping metrics reveal structural changes in investor geographical velocity trends across India:</p>
+        <div style="background: #f8fafc; padding: 30px; border-radius: 12px; margin-top: 20px;">
+            <p><strong>Tier-3 Expansion:</strong> While established Tier-1 economic capitals command larger transactional check sizes, emerging Tier-3 regional municipalities reflect the highest account registration growth rate.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img class="bleed-image-side" src="http://googleusercontent.com/image_collection/image_retrieval/4282625290767037778" alt="Geographic Investment Density Map">
+    </div>
+</div>
+
+<div class="slide-container" id="slide7">
+    <h2 class="slide-title">Slide 7: Performance Metrics — Sharpe Analysis</h2>
+    <div class="content-area">
+        <div class="formula-box">
+            <math xmlns="http://www.w3.org/1998/Math/MathML" display="math" style="font-size: 24px;">
+                <mtext>Annualized Sharpe Ratio</mtext>
+                <mo>=</mo>
+                <mfrac>
+                    <mrow><mtext>Mean Daily Return</mtext></mrow>
+                    <mrow><mtext>Volatility Standard Deviation</mtext></mrow>
+                </mfrac>
+                <mo>&#x00D7;</mo>
+                <msqrt><mn>252</mn></msqrt>
+            </math>
+        </div>
+        <div style="height: 220px; background: linear-gradient(180deg, rgba(49,130,206,0.1), transparent); border-bottom: 2px solid #3182ce; position: relative; margin-top: 20px;">
+            <svg viewBox="0 0 1000 100" style="width: 100%; height: 100%; overflow: visible;">
+                <path d="M0,80 Q100,20 200,70 T400,30 T600,60 T800,10 T1000,40" fill="none" stroke="#3182ce" stroke-width="4" />
+            </svg>
+        </div>
+        <p style="margin-top: 25px; font-size: 17px; text-align: center;">Tracks historical 90-day rolling return variations to verify whether individual asset alpha stems from true efficiency or volatile exposure hazards.</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide8">
+    <h2 class="slide-title">Slide 8: Performance Metrics — Tail Risk Parameters</h2>
+    <div class="content-area table-layout">
+        <table>
+            <thead>
+                <tr>
+                    <th>AMFI Asset Identity Key</th>
+                    <th>95% Daily Value at Risk (VaR)</th>
+                    <th>95% Daily Conditional VaR (CVaR)</th>
+                    <th>System Risk Level Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>AMFI: 100016 (Growth Strategy)</td><td>-1.03%</td><td>-1.89%</td><td><span style="color:#10b981;">● Acceptable Exposure</span></td></tr>
+                <tr><td>AMFI: 100025 (Tactical Alpha)</td><td>-1.45%</td><td>-2.54%</td><td><span style="color:#f59e0b;">● Active Monitoring</span></td></tr>
+                <tr><td>AMFI: 101206 (Secure Income Layer)</td><td>-0.31%</td><td>-0.52%</td><td><span style="color:#10b981;">● Safe Conservative</span></td></tr>
+            </tbody>
+        </table>
+        <p style="margin-top: 35px; text-align: center; font-style: italic;">
+            Value at Risk (VaR) isolates maximum predictable downside boundaries at a 95% threshold confidence level, while Conditional VaR (CVaR) computes average breakdown values within that worst-case 5% tail window.
+        </p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide9">
+    <h2 class="slide-title">Slide 9: Dashboard — Sector Concentration Analysis</h2>
+    <div class="content-area">
+        <div class="screenshot-frame">
+            <div style="text-align: center;">
+                <i class="fa-solid fa-chart-pie" style="font-size: 44px; color: #a0aec0; margin-bottom: 15px;"></i><br>
+                [ For Final PDF Release: Paste your Tableau Dashboard Sector Allocation Breakdown screenshot here ]<br>
+                <span style="font-size: 14px; color: #a0aec0; font-weight: normal;">Demonstrating structural Herfindahl-Hirschman Index (HHI) monitoring where scores > 2500 trigger concentration alerts.</span>
+            </div>
+        </div>
+        <p style="margin-top: 25px; text-align: justify;">The asset diversification loop applies the structural math index equation: <span class="math">HHI = &sum; (weight<sub>i</sub>)<sup>2</sup></span>. Funds showing heavy clustering into a narrow sector group automatically request structural rebalancing sequences.</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide10">
+    <h2 class="slide-title">Slide 10: Dashboard — Investor Behavioral Cohorts</h2>
+    <div class="content-area">
+        <div class="screenshot-frame">
+            <div style="text-align: center;">
+                <i class="fa-solid fa-users-gear" style="font-size: 44px; color: #a0aec0; margin-bottom: 15px;"></i><br>
+                [ For Final PDF Release: Paste your Tableau Dashboard Registration Cohort matrix summary screenshot here ]<br>
+                <span style="font-size: 14px; color: #a0aec0; font-weight: normal;">Demonstrating user lifetime value trends segmented across active calendar recruitment windows.</span>
+            </div>
+        </div>
+        <p style="margin-top: 25px; text-align: justify;">Cohort behavior tracking uncovers key trends: the 2025 signup group displays 60% higher initial active deposit ticket sizes alongside rapid equity fund adoption weights, contrasting with the conservative patterns seen in the 2024 cohort.</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide11">
+    <h2 class="slide-title">Slide 11: Key Findings &amp; Corporate Recommendations</h2>
+    <div class="content-area">
+        <ul class="bullet-list">
+            <li><i class="fa-solid fa-triangle-exclamation"></i> <strong>Proactive Retention Triggers:</strong> Run automated alert sequences when an active user's transaction timeline expands past a <strong>35-day boundary</strong>, indicating early indicators of upcoming client churn.</li>
+            <li><i class="fa-solid fa-map-location-dot"></i> <strong>Tier-3 Marketing Allocation:</strong> Focus digital budget allocation toward high-velocity regional clusters to scale retail market entry efficiently.</li>
+            <li><i class="fa-solid fa-sliders"></i> <strong>Risk-Mitigated Recommender Systems:</strong> Utilize the structural criteria inside <code>recommender.py</code> to present target allocations sorted strictly by annualized Sharpe efficiency.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide-container" id="slide12">
+    <div class="title-layout" style="background: #ffffff; color: #0f172a;">
+        <h2 style="font-size: 80px; margin-bottom: 20px;">THANK YOU</h2>
+        <div class="accent" style="margin: 20px 0;"></div>
+        <p style="font-size: 24px; font-weight: 500; color: #64748b; letter-spacing: 1px;">QUESTIONS &amp; TECHNICAL COMPLIANCE AUDIT</p>
+        <div style="margin-top: 60px; text-align: center; color: #94a3b8; font-size: 16px;">
+            <p style="color: #475569; font-weight: 600;">HIMANSHU | Bluestock Fintech Quantitative Research Portfolio</p>
+            <p>Deployment Phase Complete — Branch Release Engine Standard: v1.0 Production Stable</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -3,7 +3,7 @@
 An institutional-grade quantitative finance data pipeline and visualization platform designed to model fund performance, risk profiles, and investor behavior attributes.
 
 ## 🚀 Key Visualizations & Portfolios
-* **Live Tableau Interactive Dashboard:** [PASTE_YOUR_TABLEAU_PUBLIC_LIVE_URL_HERE]
+* **Live Tableau Interactive Dashboard:** https://public.tableau.com/views/BluestockMutualFundAnalyticsPlatform/IndustryInflowTimeline?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
 
 ## 📊 Core Features & Deliverables
 * **Day 1-5 (Tableau Cloud App):** Macro AUM trends ($3.52B), geographic heatmaps of India, and transaction distribution matrices.
